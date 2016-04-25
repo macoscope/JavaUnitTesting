@@ -19,4 +19,8 @@ public class LoginUseCase {
         loginWithCredentials(credentials);
         return loggedIn;
     }
+
+    public boolean loginCoverage(LoginCredentials credentials) {
+        return loginService.loginWithBranches(credentials.login, credentials.password);
+    }
 }
