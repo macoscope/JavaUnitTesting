@@ -1,4 +1,4 @@
-package com.macoscope.unittesting.example
+package com.macoscope.unittesting.intro
 
 import com.macoscope.unittesting.login.LoginCredentials
 import com.macoscope.unittesting.login.LoginService
@@ -9,13 +9,13 @@ public class BasicUnitTest extends Specification {
 
     def 'given when then structure'() {
         given:
-            LoginUseCase loginUseCase = new LoginUseCase(new LoginService())
+            LoginUseCase sut = new LoginUseCase(new LoginService())
             LoginCredentials correctLoginCredentials =
                     LoginCredentials.builder().login("john").password("correct").build()
         when:
-            loginUseCase.loginWithCredentials(correctLoginCredentials)
+            sut.loginWithCredentials(correctLoginCredentials)
         then:
-            loginUseCase.isLoggedIn()
+            sut.isLoggedIn()
     }
 
     def 'expect structure'() {
@@ -26,5 +26,4 @@ public class BasicUnitTest extends Specification {
         expect:
             loginUseCase.loginWithCredentialsWithStatus(correctLoginCredentials) == true
     }
-
 }

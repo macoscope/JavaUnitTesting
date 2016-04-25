@@ -12,8 +12,7 @@ public class LoginUseCase {
     boolean loggedIn = false;
 
     public void loginWithCredentials(LoginCredentials credentials) {
-        loginService.login(credentials.login, credentials.password);
-        loggedIn = true;
+        loggedIn = loginService.login(credentials.login, credentials.password);
     }
 
     public boolean loginWithCredentialsWithStatus(LoginCredentials credentials) {

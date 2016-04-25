@@ -1,9 +1,11 @@
-package com.macoscope.unittesting.example
+package com.macoscope.unittesting.basics
 
+import groovy.transform.TypeChecked
 import spock.lang.Specification
 import timber.log.Timber
 
-public class BasicLifecycleUnitTest extends Specification {
+@TypeChecked
+public class LifecycleUnitTest extends Specification {
 
     void setupSpec() {
         Timber.plant(new StandardOutTree())
@@ -35,6 +37,7 @@ public class BasicLifecycleUnitTest extends Specification {
     void cleanupSpec() {
         Timber.d("cleanupSpec")
     }
+
 
 
     class StandardOutTree extends Timber.DebugTree {
