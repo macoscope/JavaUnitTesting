@@ -1,15 +1,24 @@
 package com.macoscope.unittesting.login;
 
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
+import android.support.annotation.VisibleForTesting;
 
-@RequiredArgsConstructor
+import lombok.Getter;
+
+
 public class LoginUseCase {
 
-    final LoginService loginService;
-
+    LoginService loginService;
     @Getter
     boolean loggedIn = false;
+
+    @VisibleForTesting
+    public LoginUseCase(){
+        this(new LoginService());
+    }
+
+    public LoginUseCase(LoginService loginService){
+        this.loginService = loginService;
+    }
 
     public void loginWithCredentials(LoginCredentials credentials) {
         loggedIn = loginService.login(credentials.login, credentials.password);

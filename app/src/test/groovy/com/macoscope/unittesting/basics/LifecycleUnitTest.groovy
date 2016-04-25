@@ -38,8 +38,6 @@ public class LifecycleUnitTest extends Specification {
         Timber.d("cleanupSpec")
     }
 
-
-
     class StandardOutTree extends Timber.DebugTree {
             @Override
             protected void log(int priority, String tag, String message, Throwable t) {
