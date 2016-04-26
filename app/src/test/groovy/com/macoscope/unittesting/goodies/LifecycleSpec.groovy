@@ -5,7 +5,7 @@ import spock.lang.Specification
 import timber.log.Timber
 
 @TypeChecked
-public class LifecycleUnitTest extends Specification {
+public class LifecycleSpec extends Specification {
 
     void setupSpec() {
         Timber.plant(new StandardOutTree())

@@ -5,7 +5,7 @@ import com.macoscope.unittesting.login.LoginService
 import com.macoscope.unittesting.login.LoginUseCase
 import spock.lang.Specification
 
-public class BasicUnitTest extends Specification {
+public class BasicSpec extends Specification {
 
     def 'given when then structure'() {
         given:

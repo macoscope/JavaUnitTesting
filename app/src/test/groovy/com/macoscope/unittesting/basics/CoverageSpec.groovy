@@ -5,7 +5,7 @@ import com.macoscope.unittesting.login.LoginUseCase
 import spock.lang.Ignore
 import spock.lang.Specification
 
-public class CoverageUnitTest extends Specification {
+public class CoverageSpec extends Specification {
 
     @Ignore("cheating")
     def 'fake test'() {

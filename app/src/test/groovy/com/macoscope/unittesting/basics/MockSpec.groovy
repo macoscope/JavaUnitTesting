@@ -5,7 +5,7 @@ import com.macoscope.unittesting.login.LoginService
 import com.macoscope.unittesting.login.LoginUseCase
 import spock.lang.Specification
 
-public class MockUnitTest extends Specification {
+public class MockSpec extends Specification {
 
     def 'test with real dependency - login success'() {
         given:

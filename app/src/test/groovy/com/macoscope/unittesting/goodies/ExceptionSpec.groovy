@@ -5,7 +5,7 @@ import com.macoscope.unittesting.login.LoginUseCase
 import spock.lang.Ignore
 import spock.lang.Specification
 
-public class ExceptionUnitTest extends Specification {
+public class ExceptionSpec extends Specification {
 
 
     def 'exception type check'() {
@@ -38,7 +38,7 @@ public class ExceptionUnitTest extends Specification {
     }
 
     //XXX misuse, do not do this at home
-    @Ignore("uncomment and see result")
+    @Ignore("remove @Ignore and see results")
     def 'exceptions only from when block'() {
         given:
             LoginUseCase sut = new LoginUseCase()
