@@ -12,15 +12,19 @@ public class LoginUseCase {
     boolean loggedIn = false;
 
     @VisibleForTesting
-    public LoginUseCase(){
+    public LoginUseCase() {
         this(new LoginService());
     }
 
-    public LoginUseCase(LoginService loginService){
+    public LoginUseCase(LoginService loginService) {
         this.loginService = loginService;
     }
 
     public void loginWithCredentials(LoginCredentials credentials) {
+        if (credentials == null) {
+            throw new NullPointerException("Credentials cannot be null");
+        }
+
         loggedIn = loginService.login(credentials.login, credentials.password);
     }
 

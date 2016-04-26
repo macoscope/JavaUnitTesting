@@ -41,6 +41,7 @@ public class MockUnitTest extends Specification {
             1 * loginServiceMock.login(_ as String, _ as String)
     }
 
+    //XXX not recommended, doesn't check anything
     def 'mocking - zero or any interactions'() {
         given:
             LoginService loginServiceMock = Mock(LoginService)
@@ -60,6 +61,18 @@ public class MockUnitTest extends Specification {
 //            sut.loginWithCredentials(credentials("john", "correct"))
         then:
             (1.._) * loginServiceMock.login("john", "correct")
+    }
+
+    //XXX not recommended, focused on internal algorithm, only use when you really need 0 interactions
+    def 'mocking - zero interactions'() {
+        given:
+            LoginService loginServiceMock = Mock(LoginService)
+            LoginUseCase sut = new LoginUseCase(loginServiceMock)
+        when:
+            sut.loginWithCredentials(null)
+        then:
+            0 * loginServiceMock.login(_ as String, _ as String)
+            thrown NullPointerException
     }
 
 
