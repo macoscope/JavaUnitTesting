@@ -1,4 +1,4 @@
-package com.macoscope.unittesting.intro
+package com.macoscope.unittesting.basics
 
 import com.macoscope.unittesting.login.LoginCredentials
 import com.macoscope.unittesting.login.LoginService

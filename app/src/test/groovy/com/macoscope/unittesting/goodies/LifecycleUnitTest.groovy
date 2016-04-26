@@ -1,4 +1,4 @@
-package com.macoscope.unittesting.basics
+package com.macoscope.unittesting.goodies
 
 import groovy.transform.TypeChecked
 import spock.lang.Specification
