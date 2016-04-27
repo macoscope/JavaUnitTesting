@@ -42,7 +42,7 @@ public class RuleSpec extends Specification {
                     base.evaluate();
                     System.out.print testName + " - Finished\n\n"
                 }
-            };
+            }
         }
     }
 }
