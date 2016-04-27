@@ -1,4 +1,4 @@
-package com.macoscope.unittesting.login;
+package com.macoscope.unittesting.login.model;
 
 import timber.log.Timber;
 

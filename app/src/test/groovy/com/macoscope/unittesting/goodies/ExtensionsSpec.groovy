@@ -6,6 +6,7 @@ import spock.lang.Specification
 import spock.lang.Timeout
 
 public class ExtensionsSpec extends Specification {
+
     //@AutoCleanup(value = "closeException", quiet = false)
     @AutoCleanup
     //@Shared
@@ -16,7 +17,6 @@ public class ExtensionsSpec extends Specification {
             databaseConnection.open()
             true
     }
-
 
     def "auto cleanup second"() {
         expect:
@@ -48,5 +48,4 @@ public class ExtensionsSpec extends Specification {
             throw new IllegalStateException("Connection already closed")
         }
     }
-
 }

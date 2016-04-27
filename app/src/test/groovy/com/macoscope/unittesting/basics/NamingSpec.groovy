@@ -1,8 +1,8 @@
 package com.macoscope.unittesting.basics
 
-import com.macoscope.unittesting.login.LoginCredentials
-import com.macoscope.unittesting.login.LoginService
-import com.macoscope.unittesting.login.LoginUseCase
+import com.macoscope.unittesting.login.model.LoginCredentials
+import com.macoscope.unittesting.login.model.LoginService
+import com.macoscope.unittesting.login.model.LoginUseCase
 import spock.lang.Specification
 
 public class NamingSpec extends Specification {

@@ -1,4 +1,4 @@
-package com.macoscope.unittesting.login;
+package com.macoscope.unittesting.login.view;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -30,6 +30,9 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 import com.macoscope.unittesting.R;
+import com.macoscope.unittesting.login.model.LoginCredentials;
+import com.macoscope.unittesting.login.model.LoginService;
+import com.macoscope.unittesting.login.model.LoginUseCase;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,7 +40,7 @@ import java.util.List;
 import static android.Manifest.permission.READ_CONTACTS;
 
 /**
- * A login screen that offers login via email/password.
+ * Google Login Screen example
  */
 public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<Cursor> {
 
@@ -46,13 +49,6 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
      */
     private static final int REQUEST_READ_CONTACTS = 0;
 
-    /**
-     * A dummy authentication store containing known user names and passwords.
-     * TODO: remove after connecting to a real authentication system.
-     */
-    private static final String[] DUMMY_CREDENTIALS = new String[]{
-            "foo@example.com:hello", "bar@example.com:world"
-    };
     /**
      * Keep track of the login task to ensure we can cancel it if requested.
      */
@@ -319,8 +315,8 @@ public class LoginActivity extends AppCompatActivity implements LoaderCallbacks<
             }
 
             LoginUseCase loginUseCase = new LoginUseCase(new LoginService());
-            loginUseCase.loginWithCredentials(new LoginCredentials(login, password));
-            return loginUseCase.loggedIn;
+            return loginUseCase.loginWithCredentialsWithStatus(
+                    LoginCredentials.builder().login(login).password(password).build());
         }
 
         @Override
