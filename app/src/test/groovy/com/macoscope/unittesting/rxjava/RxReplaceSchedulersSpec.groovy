@@ -1,73 +1,30 @@
 package com.macoscope.unittesting.rxjava
 
+import com.macoscope.unittesting.rxjava.tools.RxImmediateSchedulersHook
+import com.macoscope.unittesting.rxjava.tools.RxJavaHookRule
+import org.junit.ClassRule
 import rx.Observable
 import rx.functions.Action1
 import rx.functions.Func0
 import rx.schedulers.Schedulers
+import spock.lang.Shared
 import spock.lang.Specification
 
 public class RxReplaceSchedulersSpec extends Specification {
 
-    // @ClassRule
-    //@Shared
-    //  RxJavaResetRule rxJavaResetRule = new RxJavaResetRule(new RxImmediateSchedulersHook(), new RxExecutionHook())
+    @ClassRule
+    @Shared
+    RxJavaHookRule rxJavaResetRule = new RxJavaHookRule().withRxSchedulersHook(new RxImmediateSchedulersHook())
 
-    def 'success'() {
-        expect:
-            rx.Observable.just("test").subscribe()
-    }
-
-    def 'error'() {
-        expect:
-            rx.Observable.error(new IllegalStateException()).subscribe()
-    }
-
-
-    def 'without schedulers no delay'() {
-        given:
-            List<String> result = new ArrayList<>()
-        when:
-
-            createObservableWithTextAndDelay("John", 0)
-                    .subscribe(new AddToArrayAction<String>(result));
-        then:
-
-            result.contains("John")
-    }
-
-    def 'without schedulers with 1s delay'() {
-        given:
-            List<String> result = new ArrayList<>()
-        when:
-            createObservableWithTextAndDelay("John", 1000)
-                    .subscribe(new AddToArrayAction<String>(result));
-        then:
-            result.contains("John")
-    }
-
-
-    def 'io scheduler no delay'() {
-        given:
-            List<String> result = new ArrayList<>()
-        when:
-            createObservableWithTextAndDelay("John", 0)
-                    .subscribeOn(Schedulers.io())
-                    .subscribe(new AddToArrayAction<String>(result));
-        then:
-            sleep 10 //random failure without sleep due to thread switching
-            result.contains("John")
-    }
-    
     def 'io scheduler with 1s delay'() {
         given:
             List<String> result = new ArrayList<>()
         when:
-
             createObservableWithTextAndDelay("John", 1000)
                     .subscribeOn(Schedulers.io())
                     .subscribe(new AddToArrayAction<String>(result));
         then:
-            sleep 1010 // have to wait till job ends
+            //sleep 1010
             result.contains("John")
     }
 
@@ -81,7 +38,7 @@ public class RxReplaceSchedulersSpec extends Specification {
         })
     }
 
-    static class AddToArrayAction<T> implements Action1<T>  {
+    static class AddToArrayAction<T> implements Action1<T> {
 
         List<T> result
 

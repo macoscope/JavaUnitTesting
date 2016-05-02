@@ -9,20 +9,29 @@ import rx.plugins.RxJavaPlugins;
 import rx.plugins.RxJavaPluginsHelper;
 import rx.plugins.RxJavaSchedulersHook;
 
-public class RxJavaResetRule implements TestRule {
-
+public class RxJavaHookRule implements TestRule {
 
     private RxJavaSchedulersHook rxSchedulersHook;
     private RxJavaObservableExecutionHook rxExecutionHook;
 
-    public RxJavaResetRule(RxJavaSchedulersHook rxSchedulersHook,
-                           RxJavaObservableExecutionHook rxExecutionHook) {
+    public RxJavaHookRule() {
+        this(RxJavaSchedulersHook.getDefaultInstance(), EmptyRxJavaObservableExecutionHook.getInstance());
+    }
+
+    public RxJavaHookRule(RxJavaSchedulersHook rxSchedulersHook,
+                          RxJavaObservableExecutionHook rxExecutionHook) {
         this.rxSchedulersHook = rxSchedulersHook;
         this.rxExecutionHook = rxExecutionHook;
     }
 
-    public RxJavaResetRule() {
-        this(RxJavaSchedulersHook.getDefaultInstance(), EmptyRxJavaObservableExecutionHook.getInstance());
+    public RxJavaHookRule withRxSchedulersHook(RxJavaSchedulersHook rxSchedulersHook) {
+        this.rxSchedulersHook = rxSchedulersHook;
+        return this;
+    }
+
+    public RxJavaHookRule withRxExecutionHook(RxJavaObservableExecutionHook rxExecutionHook) {
+        this.rxExecutionHook = rxExecutionHook;
+        return this;
     }
 
     @Override
