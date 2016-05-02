@@ -10,7 +10,7 @@ import rx.schedulers.Schedulers
 import spock.lang.Shared
 import spock.lang.Specification
 
-public class RxReplaceSchedulersSpec extends Specification {
+public class RxReplaceImmediateSchedulerSpec extends Specification {
 
     @ClassRule
     @Shared
