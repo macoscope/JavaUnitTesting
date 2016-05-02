@@ -73,7 +73,7 @@ public class RxListSpec extends Specification {
             resultError.first() instanceof IllegalStateException
     }
 
-    private Observable createObservableWithTextAndDelay(String text, long delay) {
+    Observable createObservableWithTextAndDelay(String text, long delay) {
         Observable.defer(new Func0<Observable>() {
             @Override
             Observable call() {
@@ -83,7 +83,7 @@ public class RxListSpec extends Specification {
         })
     }
 
-    private Observable createObservableWithErrorAndDelay(Throwable throwable, long delay) {
+    Observable createObservableWithErrorAndDelay(Throwable throwable, long delay) {
         Observable.defer(new Func0<Observable>() {
             @Override
             Observable call() {

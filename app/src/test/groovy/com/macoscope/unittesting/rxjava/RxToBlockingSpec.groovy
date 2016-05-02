@@ -41,12 +41,31 @@ public class RxToBlockingSpec extends Specification {
             result.contains("John")
     }
 
-    private Observable<String> createObservableWithTextAndDelay(String text, long delay) {
+    def 'error io scheduler with 1s delay'() {
+        when:
+            createObservableWithErrorAndDelay(new IllegalStateException(), 1000)
+                    .subscribeOn(Schedulers.io())
+                    .toList().toBlocking().single();
+        then:
+            thrown IllegalStateException
+    }
+
+    Observable<String> createObservableWithTextAndDelay(String text, long delay) {
         Observable.defer(new Func0<Observable>() {
             @Override
             Observable call() {
                 sleep(delay)
                 return Observable.just(text, text)
+            }
+        })
+    }
+
+    Observable createObservableWithErrorAndDelay(Throwable throwable, long delay) {
+        Observable.defer(new Func0<Observable>() {
+            @Override
+            Observable call() {
+                sleep(delay)
+                return Observable.error(throwable)
             }
         })
     }

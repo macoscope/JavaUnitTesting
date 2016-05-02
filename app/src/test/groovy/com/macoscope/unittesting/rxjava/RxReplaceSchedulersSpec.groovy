@@ -28,7 +28,7 @@ public class RxReplaceSchedulersSpec extends Specification {
             result.contains("John")
     }
 
-    private Observable createObservableWithTextAndDelay(String text, long delay) {
+    Observable createObservableWithTextAndDelay(String text, long delay) {
         Observable.defer(new Func0<Observable>() {
             @Override
             Observable call() {
