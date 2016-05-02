@@ -3,6 +3,7 @@ package com.macoscope.unittesting.rxjava
 import rx.Observable
 import rx.functions.Func0
 import rx.schedulers.Schedulers
+import spock.lang.Ignore
 import spock.lang.Specification
 import spock.lang.Timeout
 
@@ -29,6 +30,16 @@ public class RxToBlockingSpec extends Specification {
             result.contains("John")
     }
 
+    def 'error io scheduler with 1s delay'() {
+        when:
+            createObservableWithErrorAndDelay(new IllegalStateException(), 1000)
+                    .subscribeOn(Schedulers.io())
+                    .toList().toBlocking().single();
+        then:
+            thrown IllegalStateException
+    }
+
+    @Ignore("remove @Ignore and see results")
     @Timeout(10)
     def 'infinite io scheduler no delay'() {
         when:
@@ -39,15 +50,6 @@ public class RxToBlockingSpec extends Specification {
         then:
             //toBlocking().single() is waiting for sequence complete
             result.contains("John")
-    }
-
-    def 'error io scheduler with 1s delay'() {
-        when:
-            createObservableWithErrorAndDelay(new IllegalStateException(), 1000)
-                    .subscribeOn(Schedulers.io())
-                    .toList().toBlocking().single();
-        then:
-            thrown IllegalStateException
     }
 
     Observable<String> createObservableWithTextAndDelay(String text, long delay) {

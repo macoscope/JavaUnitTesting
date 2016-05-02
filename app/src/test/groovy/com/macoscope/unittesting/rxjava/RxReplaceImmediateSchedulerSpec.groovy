@@ -16,6 +16,7 @@ public class RxReplaceImmediateSchedulerSpec extends Specification {
     @Shared
     RxJavaHookRule rxJavaResetRule = new RxJavaHookRule().withRxSchedulersHook(new RxImmediateSchedulersHook())
 
+//    @Ignore("remove @Ignore and see results")
     def 'io scheduler with 1s delay'() {
         given:
             List<String> result = new ArrayList<>()
@@ -24,7 +25,7 @@ public class RxReplaceImmediateSchedulerSpec extends Specification {
                     .subscribeOn(Schedulers.io())
                     .subscribe(new AddToArrayAction<String>(result));
         then:
-            //sleep 1010
+            //sleep 1010 //io scheduler is replaced with immediate, no need to wait for events
             result.contains("John")
     }
 
@@ -32,7 +33,7 @@ public class RxReplaceImmediateSchedulerSpec extends Specification {
         Observable.defer(new Func0<Observable>() {
             @Override
             Observable call() {
-                sleep(delay)
+                sleep(1000)
                 return Observable.just(text)
             }
         })

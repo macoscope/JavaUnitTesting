@@ -9,10 +9,6 @@ import spock.lang.Specification
 //XXX storing results in list is not a recommended approach
 public class RxListSpec extends Specification {
 
-//    @ClassRule
-//    @Shared
-//    RxJavaHookRule rxJavaResetRule = new RxJavaHookRule().withRxExecutionHook(new RxExecutionHook())
-
     def 'without schedulers no delay'() {
         given:
             List<String> result = new ArrayList<>()
