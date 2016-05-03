@@ -49,6 +49,7 @@ public class RxTestSubscriberSpec extends Specification {
             testSubscriber.awaitTerminalEvent()
             testSubscriber.assertError IllegalStateException
     }
+
     @Ignore("remove @Ignore and see results")
     def 'error - assertion message'() {
         given:
