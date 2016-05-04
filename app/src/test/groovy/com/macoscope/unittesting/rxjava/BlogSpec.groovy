@@ -84,6 +84,46 @@ public class BlogSpec extends Specification {
             testSubscriber.assertValues("Macoscope", "Android Apps")
     }
 
+    def 'test subscriber with assertion failure'() {
+        setup:
+            TestSubscriber<String> testSubscriber = new TestSubscriber<>()
+        when:
+            Observable.error(new IllegalStateException("custom error message"))
+                    .delay(1000, MILLISECONDS)
+                    .subscribe(testSubscriber);
+        then:
+            testSubscriber.awaitTerminalEvent()
+            testSubscriber.assertNoErrors() //Comment line and check test result
+            testSubscriber.assertValues("Macoscope", "Android Apps")
+    }
+
+    def 'test subscriber with Spock assertion failure'() {
+        setup:
+            TestSubscriber<String> testSubscriber = new TestSubscriber<>()
+        when:
+            Observable.error(new IllegalStateException("custom error message"))
+                    .delay(1000, MILLISECONDS)
+                    .subscribe(testSubscriber);
+        then:
+            testSubscriber.awaitTerminalEvent()
+            //testSubscriber.getOnErrorEvents().isEmpty() //Uncomment line and check test result
+            testSubscriber.getOnNextEvents().containsAll("Macoscope", "Android Apps")
+    }
+
+    def 'test subscriber with error'() {
+        setup:
+            TestSubscriber<String> testSubscriber = new TestSubscriber<>()
+        when:
+            Observable.error(new IllegalStateException("custom error message"))
+                    .delay(1000, MILLISECONDS)
+                    .subscribe(testSubscriber);
+        then:
+            testSubscriber.awaitTerminalEvent()
+            Exception exception = testSubscriber.getOnErrorEvents().first()
+            exception instanceof IllegalStateException
+            exception.getMessage() == "custom error message"
+    }
+
     def 'test subscriber with test scheduler'() {
         setup:
             TestSubscriber<String> testSubscriber = new TestSubscriber<>()
