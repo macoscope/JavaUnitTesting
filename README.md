@@ -1,8 +1,9 @@
-# Java Unit Testing MCLab
-## Presentation
-https://docs.google.com/a/macoscope.net/presentation/d/1zS6jOHJER9JQW8wLm_GTUJJJ8ZJrJMZrXJ_cQ4zkvbE
-## Trello
-https://trello.com/c/zUHLUjby/78-unit-testing-training-for-jvm-developers
+# Java Unit Testing with Spock and RxJava
+
+Project with samples for internal training which took place at Macoscope
+
+## Unit testing RxJava from Beginner to Aware user
+http://macoscope.com/blog/unit-testing-rxjava/
 
 
 
