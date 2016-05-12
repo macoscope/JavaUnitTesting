@@ -6,7 +6,6 @@ import rx.functions.Func0
 import rx.observers.TestSubscriber
 import rx.schedulers.Schedulers
 import rx.schedulers.TestScheduler
-import spock.lang.Ignore
 import spock.lang.Specification
 
 import static java.util.concurrent.TimeUnit.MILLISECONDS
@@ -50,7 +49,7 @@ public class RxTestSubscriberSpec extends Specification {
             testSubscriber.assertError IllegalStateException
     }
 
-    @Ignore("remove @Ignore and see results")
+    //@Ignore("remove @Ignore and see results")
     def 'error - assertion message'() {
         given:
             TestSubscriber<String> testSubscriber = new TestSubscriber<>()
@@ -60,7 +59,7 @@ public class RxTestSubscriberSpec extends Specification {
                     .subscribe(testSubscriber);
         then:
             testSubscriber.awaitTerminalEvent()
-//            testSubscriber.assertNoErrors()
+            testSubscriber.assertNoErrors()
             testSubscriber.assertValue("John")
     }
 

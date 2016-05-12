@@ -4,6 +4,7 @@ import rx.Observable
 import rx.functions.Action1
 import rx.observers.TestSubscriber
 import rx.schedulers.TestScheduler
+import spock.lang.Ignore
 import spock.lang.Specification
 import spock.util.concurrent.BlockingVariable
 import spock.util.concurrent.PollingConditions
@@ -43,7 +44,7 @@ public class BlogSpec extends Specification {
             result.get() == "Macoscope"
     }
 
-    def 'store result with pooling condition'() {
+    def 'store result with polling condition'() {
         setup:
             PollingConditions conditions = new PollingConditions(timeout: 2, initialDelay: 0, factor: 0.1)
             List<String> result = new ArrayList<>()
@@ -84,6 +85,7 @@ public class BlogSpec extends Specification {
             testSubscriber.assertValues("Macoscope", "Android Apps")
     }
 
+    @Ignore("remove @Ignore and see results")
     def 'test subscriber with assertion failure'() {
         setup:
             TestSubscriber<String> testSubscriber = new TestSubscriber<>()
@@ -97,6 +99,7 @@ public class BlogSpec extends Specification {
             testSubscriber.assertValues("Macoscope", "Android Apps")
     }
 
+    @Ignore("remove @Ignore and see results")
     def 'test subscriber with Spock assertion failure'() {
         setup:
             TestSubscriber<String> testSubscriber = new TestSubscriber<>()
@@ -110,6 +113,7 @@ public class BlogSpec extends Specification {
             testSubscriber.getOnNextEvents().containsAll("Macoscope", "Android Apps")
     }
 
+    @Ignore("remove @Ignore and see results")
     def 'test subscriber with error'() {
         setup:
             TestSubscriber<String> testSubscriber = new TestSubscriber<>()

@@ -3,9 +3,7 @@ package com.macoscope.unittesting.rxjava
 import rx.Observable
 import rx.functions.Func0
 import rx.schedulers.Schedulers
-import spock.lang.Ignore
 import spock.lang.Specification
-import spock.lang.Timeout
 
 public class RxToBlockingSpec extends Specification {
 
@@ -39,8 +37,8 @@ public class RxToBlockingSpec extends Specification {
             thrown IllegalStateException
     }
 
-    @Ignore("remove @Ignore and see results")
-    @Timeout(10)
+    //@Ignore("remove @Ignore and see results")
+//    @Timeout(10)
     def 'infinite io scheduler no delay'() {
         when:
             List<String> result = createObservableWithTextAndDelay("John", 0)
